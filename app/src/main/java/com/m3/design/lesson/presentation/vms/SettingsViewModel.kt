@@ -22,7 +22,7 @@ class SettingsViewModel: ViewModel() {
         private set
     var textColor by mutableStateOf(Colors.UNSPECIFIED)
         private set
-    var selectedContainerColor by mutableStateOf(Colors.ON_PRIMARY_CONTAINER)
+    var selectedContainerColor by mutableStateOf(Colors.PRIMARY)
         private set
 
 
@@ -41,6 +41,20 @@ class SettingsViewModel: ViewModel() {
     val changeNightThemeValue = { value: Boolean -> isNightTheme = value }
 
     // Все для создания формы
+    var resetSettings = {
+        isNightTheme = false
+        containerShapes = Shapes.SMALL
+        containerColor = Colors.PRIMARY_CONTAINER
+        backgroundColor = Colors.BACKGROUND
+        textColor = Colors.UNSPECIFIED
+        selectedContainerColor = Colors.PRIMARY
+
+        textStyle_Display = TextClass.DISPLAY
+        textStyle_Headline = TextClass.HEADLINE
+        textStyle_Title = TextClass.TITLE
+        textStyle_Body = TextClass.BODY
+        textStyle_Label = TextClass.LABEL
+    }
 
     val changeContainerShapes =  { index: Float ->
         containerShapes = when (index) {

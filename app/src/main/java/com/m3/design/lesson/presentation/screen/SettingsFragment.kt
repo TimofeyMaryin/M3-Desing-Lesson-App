@@ -14,11 +14,13 @@ import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import com.m3.design.lesson.presentation.navigation.SettingsScreen
+import com.m3.design.lesson.presentation.utils.ui.BodyText
 import com.m3.design.lesson.presentation.utils.ui.Container
 import com.m3.design.lesson.presentation.utils.ui.FragmentManager
 import com.m3.design.lesson.presentation.utils.ui.createContainer
@@ -31,6 +33,7 @@ fun SettingsFragment(
 ) {
 
     FragmentManager(navController = navController, title = "Настройки", viewModel = viewModel) {
+
 
         Box(
             modifier = Modifier
@@ -57,6 +60,12 @@ fun SettingsFragment(
                 SettingsButton(value = "Ночной режим") {
                     navController.navigate(SettingsScreen.SettingsNightTheme.route)
                 }
+            }
+        }
+
+        Box(modifier = Modifier.fillMaxSize(.9f), contentAlignment = Alignment.BottomCenter) {
+            TextButton(onClick = { viewModel.resetSettings.invoke() }) {
+                BodyText(value = "Сбросить настройки", viewModel = viewModel)
             }
         }
         
