@@ -51,7 +51,7 @@ fun SettingsFragment(
                 }
 
                 SettingsButton(value = "Цвета") {
-
+                    navController.navigate(SettingsScreen.SettingsColors.route)
                 }
 
                 SettingsButton(value = "Ночной режим") {

@@ -1,5 +1,6 @@
 package com.m3.design.lesson.presentation.utils.ui
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -36,7 +37,9 @@ fun FragmentManager(
 
 
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(setColorByType(type = viewModel.backgroundColor)),
     ) {
         Container(weight = 10f) {
             Column(

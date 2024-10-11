@@ -18,6 +18,10 @@ class SettingsViewModel: ViewModel() {
         private set
     var containerColor by mutableStateOf(Colors.PRIMARY_CONTAINER)
         private set
+    var backgroundColor by mutableStateOf(Colors.BACKGROUND)
+        private set
+    var textColor by mutableStateOf(Colors.UNSPECIFIED)
+        private set
     var selectedContainerColor by mutableStateOf(Colors.ON_PRIMARY_CONTAINER)
         private set
 
@@ -29,16 +33,9 @@ class SettingsViewModel: ViewModel() {
     var textStyle_Body by mutableStateOf(TextClass.BODY)
     var textStyle_Label by mutableStateOf(TextClass.LABEL)
 
-    val setTextStyleCategory = { category: TextClass ->
-        when(category) {
-            TextClass.DISPLAY -> this.textStyle_Display
-            TextClass.HEADLINE -> this.textStyle_Headline
-            TextClass.TITLE -> this.textStyle_Title
-            TextClass.BODY -> this.textStyle_Body
-            TextClass.LABEL -> this.textStyle_Label
-        }
-    }
-
+    val onChangedTextColor = { type: Colors -> textColor = type }
+    val onChangedBackgroundColor = { type: Colors -> backgroundColor = type }
+    val onChangedContainerColor = { type: Colors -> containerColor = type }
     // end text
 
     val changeNightThemeValue = { value: Boolean -> isNightTheme = value }

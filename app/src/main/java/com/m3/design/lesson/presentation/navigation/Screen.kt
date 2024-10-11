@@ -14,4 +14,5 @@ sealed class SettingsScreen (val route: String) {
     data object SettingsShapes: SettingsScreen("settings-shapes")
     data object SettingsText: SettingsScreen("settings-text")
     data object SettingsNightTheme: SettingsScreen("settings-night-theme")
+    data object SettingsColors: SettingsScreen("settings-colors")
 }

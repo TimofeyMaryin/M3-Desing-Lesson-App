@@ -53,4 +53,5 @@ import com.m3.design.lesson.presentation.vms.SettingsViewModel
     Colors.INVERSE_PRIMARY -> MaterialTheme.colorScheme.inversePrimary
     Colors.ERROR_CONTAINER -> MaterialTheme.colorScheme.errorContainer
     Colors.OUT_LINE_VARIANT -> MaterialTheme.colorScheme.outlineVariant
+    Colors.UNSPECIFIED -> Color.Unspecified
 }
