@@ -1,5 +1,6 @@
 package com.m3.design.lesson.presentation.vms
 
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -7,21 +8,43 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.m3.design.lesson.presentation.utils.params.Colors
 import com.m3.design.lesson.presentation.utils.params.Shapes
+import com.m3.design.lesson.presentation.utils.params.TextClass
 
 class SettingsViewModel: ViewModel() {
 
     var isNightTheme by mutableStateOf(false)
+        private set
     var containerShapes by mutableStateOf(Shapes.SMALL)
         private set
     var containerColor by mutableStateOf(Colors.PRIMARY_CONTAINER)
         private set
+    var selectedContainerColor by mutableStateOf(Colors.ON_PRIMARY_CONTAINER)
+        private set
 
 
+    // text
+    var textStyle_Display by mutableStateOf(TextClass.DISPLAY)
+    var textStyle_Headline by mutableStateOf(TextClass.HEADLINE)
+    var textStyle_Title by mutableStateOf(TextClass.TITLE)
+    var textStyle_Body by mutableStateOf(TextClass.BODY)
+    var textStyle_Label by mutableStateOf(TextClass.LABEL)
 
+    val setTextStyleCategory = { category: TextClass ->
+        when(category) {
+            TextClass.DISPLAY -> this.textStyle_Display
+            TextClass.HEADLINE -> this.textStyle_Headline
+            TextClass.TITLE -> this.textStyle_Title
+            TextClass.BODY -> this.textStyle_Body
+            TextClass.LABEL -> this.textStyle_Label
+        }
+    }
+
+    // end text
+
+    val changeNightThemeValue = { value: Boolean -> isNightTheme = value }
 
     // Все для создания формы
 
-    var containerValueShapesForSlider by mutableFloatStateOf(0f)
     val changeContainerShapes =  { index: Float ->
         containerShapes = when (index) {
             0f -> { Shapes.EXTRA_SMALL }
@@ -32,22 +55,6 @@ class SettingsViewModel: ViewModel() {
             else -> Shapes.SMALL
         }
     }
-    val setValueContainerValueShapesForSlide = { index: Float ->
-        containerValueShapesForSlider = index
-    }
-
-    val setContainerShapesText = {
-        var res = ""
-        res = when (containerShapes) {
-            Shapes.SMALL -> "Small"
-            Shapes.MEDIUM -> "Medium"
-            Shapes.LARGE -> "Large"
-            Shapes.EXTRA_SMALL -> "Extra Small"
-            Shapes.EXTRA_LARGE -> "Extra Large"
-        }
-        res
-    }
-
 
 
 

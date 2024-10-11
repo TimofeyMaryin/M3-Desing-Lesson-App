@@ -1,26 +1,36 @@
 package com.m3.design.lesson.presentation.utils.ui
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavController
 import com.m3.design.lesson.presentation.navigation.Screen
+import com.m3.design.lesson.presentation.vms.SettingsViewModel
 
 @Composable
 fun FragmentManager(
     navController: NavController,
+    title: String,
+    viewModel: SettingsViewModel,
     content: @Composable () -> Unit,
 ) {
 
@@ -29,7 +39,22 @@ fun FragmentManager(
         modifier = Modifier.fillMaxSize(),
     ) {
         Container(weight = 10f) {
-            content()
+            Column(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth(.9f)
+            ) {
+                Container(weight = .5f) {}
+                Container(weight = 1f) {
+                    Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.CenterStart) {
+                        // Text(text = title, style = MaterialTheme.typography.displayMedium, fontWeight = FontWeight.Bold)
+                        DisplayText(value = title, viewModel = viewModel, fontWeight = FontWeight.Bold)
+                    }
+                }
+                Container(weight = 10f) {
+                    content()
+                }
+            }
         }
 
         BottomBar(navController = navController)
