@@ -10,6 +10,7 @@ import com.m3.design.lesson.presentation.screen.ArticleFragment
 import com.m3.design.lesson.presentation.screen.MainFragment
 import com.m3.design.lesson.presentation.screen.SettingsFragment
 import com.m3.design.lesson.presentation.screen.ShowArticleFragment
+import com.m3.design.lesson.presentation.screen.ShowTextFragment
 import com.m3.design.lesson.presentation.screen.settings.SettingsColorFragment
 import com.m3.design.lesson.presentation.screen.settings.SettingsNightThem
 import com.m3.design.lesson.presentation.screen.settings.SettingsShapes
@@ -97,6 +98,13 @@ fun AppNavigation(viewModel: SettingsViewModel,) {
                 viewModel = viewModel,
                 articleIndex = it.arguments?.getString("theme") ?: "0"
             )
+        }
+
+
+        this.composable(
+            route = Screen.ShowTextScreen.route
+        ) {
+            ShowTextFragment(navController = navController, viewModel = viewModel)
         }
 
     }
