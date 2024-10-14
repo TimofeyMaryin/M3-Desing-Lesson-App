@@ -7,6 +7,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import com.m3.design.lesson.presentation.utils.params.TextClass
 import com.m3.design.lesson.presentation.vms.SettingsViewModel
 
@@ -16,18 +17,32 @@ fun DisplayText(value: String, viewModel: SettingsViewModel, fontWeight: FontWei
 }
 
 @Composable
-fun HeadlineText(value: String, viewModel: SettingsViewModel) {
-    _AppText(value = value, style = _setTextStyle(category = viewModel.textStyle_Headline), color = setColorByType(type = viewModel.textColor))
+fun HeadlineText(value: String, viewModel: SettingsViewModel, textAlign: TextAlign = TextAlign.Center, fontWeight: FontWeight = FontWeight.Normal, maxLines: Int = Int.MAX_VALUE) {
+    _AppText(
+        value = value,
+        style = _setTextStyle(category = viewModel.textStyle_Headline),
+        color = setColorByType(type = viewModel.textColor),
+        textAlign = textAlign,
+        fontWeight = fontWeight,
+        maxLines = maxLines,
+    )
 }
 
 @Composable
-fun TitleText(value: String, viewModel: SettingsViewModel) {
-    _AppText(value = value, style = _setTextStyle(category = viewModel.textStyle_Title), color = setColorByType(type = viewModel.textColor))
+fun TitleText(value: String, viewModel: SettingsViewModel, textAlign: TextAlign = TextAlign.Start) {
+    _AppText(value = value, style = _setTextStyle(category = viewModel.textStyle_Title), color = setColorByType(type = viewModel.textColor), textAlign = textAlign)
 }
 
 @Composable
-fun BodyText(value: String, viewModel: SettingsViewModel) {
-    _AppText(value = value, style = _setTextStyle(category = viewModel.textStyle_Body),color = setColorByType(type = viewModel.textColor))
+fun BodyText(value: String, viewModel: SettingsViewModel, textAlign: TextAlign = TextAlign.Center, fontWeight: FontWeight = FontWeight.Normal, maxLines: Int = Int.MAX_VALUE) {
+    _AppText(
+        value = value,
+        style = _setTextStyle(category = viewModel.textStyle_Body),
+        color = setColorByType(type = viewModel.textColor),
+        fontWeight = fontWeight,
+        textAlign = textAlign,
+        maxLines = maxLines
+    )
 }
 
 @Composable
@@ -45,13 +60,18 @@ private fun _AppText(
     style: TextStyle,
     fontWeight: FontWeight = FontWeight.Normal,
     color: Color,
+    textAlign: TextAlign = TextAlign.Center,
+    maxLines: Int = Int.MAX_VALUE,
 ) {
     Text(
         text = value,
         style = style,
         fontWeight = fontWeight,
         color = color,
-        textAlign = TextAlign.Center,
+        textAlign = textAlign,
+        maxLines = maxLines,
+
+        overflow = TextOverflow.Ellipsis,
     )
 }
 

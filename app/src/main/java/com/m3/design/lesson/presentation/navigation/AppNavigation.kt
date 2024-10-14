@@ -1,11 +1,15 @@
 package com.m3.design.lesson.presentation.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.m3.design.lesson.presentation.screen.ArticleFragment
 import com.m3.design.lesson.presentation.screen.MainFragment
 import com.m3.design.lesson.presentation.screen.SettingsFragment
+import com.m3.design.lesson.presentation.screen.ShowArticleFragment
 import com.m3.design.lesson.presentation.screen.settings.SettingsColorFragment
 import com.m3.design.lesson.presentation.screen.settings.SettingsNightThem
 import com.m3.design.lesson.presentation.screen.settings.SettingsShapes
@@ -51,6 +55,12 @@ fun AppNavigation(viewModel: SettingsViewModel,) {
             SettingsFragment(navController = navController, viewModel = viewModel)
         }
 
+        this.composable(
+            route = Screen.ArticleScreen.route
+        ) {
+            ArticleFragment(navController = navController, viewModel = viewModel)
+        }
+
 
         this.composable(
             route = SettingsScreen.SettingsShapes.route
@@ -75,7 +85,19 @@ fun AppNavigation(viewModel: SettingsViewModel,) {
         ) {
             SettingsColorFragment(navController = navController, viewModel = viewModel)
         }
-        
+
+        this.composable(
+            route = Screen.ShowArticleScreen.route + "/{theme}",
+            arguments = listOf(
+                navArgument("theme") { type = NavType.StringType }
+            )
+        ) {
+            ShowArticleFragment(
+                navController = navController,
+                viewModel = viewModel,
+                articleIndex = it.arguments?.getString("theme") ?: "0"
+            )
+        }
 
     }
 

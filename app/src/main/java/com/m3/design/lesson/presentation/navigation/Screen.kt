@@ -8,6 +8,8 @@ sealed class Screen(val route: String) {
     data object TextScreen : Screen("text-screen")
     data object ContainerScreen : Screen("container-screen")
 
+    data object ArticleScreen : Screen("article-screen")
+    data object ShowArticleScreen : Screen("show-article-screen")
 }
 
 sealed class SettingsScreen (val route: String) {

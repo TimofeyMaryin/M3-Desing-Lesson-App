@@ -17,6 +17,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -87,6 +88,10 @@ private fun ColumnScope.BottomBar(
                 enable = navController.currentDestination?.route == Screen.MainScreen.route
             ) {
                 navController.navigate(Screen.MainScreen.route)
+            }
+
+            BottomButton(ic = Icons.Default.ShoppingCart, enable = navController.currentDestination?.route == Screen.ArticleScreen.route) {
+                navController.navigate(Screen.ArticleScreen.route)
             }
 
             BottomButton(
